@@ -1,7 +1,12 @@
 import BaseElement from '../Elements/BaseElement.js';
 
 export class LoginPage {
-  #baseElement = new BaseElement();
+  #baseElement = new BaseElement(this.page);
+
+  constructor(page) {
+    super(page, url);
+    this.page = page;
+  }
 
   get loginEmail() {
     return this.#baseElement.getElement('#signinEmail');
@@ -16,9 +21,9 @@ export class LoginPage {
       '.modal-footer.d-flex.justify-content-between .btn.btn-primary'
     );
   }
-  login(emal, password) {
-    this.loginEmail.type(emal);
-    this.loginPassword.type(password, { sensitive: true});
-    this.loginButton.click();
+  async login(emal, password) {
+    await this.loginEmail.type(emal);
+    await this.loginPassword.type(password);
+    await this.loginButton.click();
   }
 }

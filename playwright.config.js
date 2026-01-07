@@ -29,15 +29,15 @@ export default defineConfig({
     actionTimeout: 10 * 1000, // 10 seconds
     navigationTimeout: 20 * 1000, // 20 seconds
     /* Base URL to use in actions like `await page.goto('')`. */
-    baseURL: 'https://example.cypress.io',
-    //baseURL: 'https://qauto.forstudy.space/',
+    //baseURL: 'https://example.cypress.io',
+    baseURL: 'https://qauto.forstudy.space/',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    // httpCredentials: {
-    //   username: 'guest',
-    //   password: 'welcome2qauto',
-    // }
+    httpCredentials: {
+      username: 'guest',
+      password: 'welcome2qauto',
+    }
   },
 
   /* Configure projects for major browsers */
