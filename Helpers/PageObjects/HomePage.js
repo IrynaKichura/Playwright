@@ -13,4 +13,8 @@ export class HomePage extends BasePage {
   listButton(text) {
     return this.#baseElement.getByText(text);
   }
+
+  // clickListButton(text) {
+  //   return this.listButton(text).click();
+  // }
 }
