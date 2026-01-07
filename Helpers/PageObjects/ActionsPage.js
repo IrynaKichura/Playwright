@@ -22,8 +22,20 @@ export default class extends BasePage {
     return this.#baseElement.getElement('.action-form');
   }
 
+  get checkbox1() {
+    return this.#baseElement.getElement(
+      '.action-checkboxes [value="checkbox1"]'
+    );
+  }
 
- message() {
+  message() {
     return this.#baseElement.getByText(text);
   }
 }
+
+//use in browser console to find selectors
+// $0  - to select the element
+// $0.id  - to get id of the element
+// $0.className - to get class of the element
+// $0.parentElement - to get parent of the element
+// document.querySelector('selector') - to find element by selector

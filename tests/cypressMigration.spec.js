@@ -1,7 +1,7 @@
-import test, {expect} from '@playwright/test';
+import test, { expect } from '@playwright/test';
 import { HomePage } from '../Helpers/PageObjects/HomePage.js';
 import { GetPage } from '../Helpers/PageObjects/GetPage.js';
-import  ActionsPage  from '../Helpers/PageObjects/ActionsPage.js';
+import ActionsPage from '../Helpers/PageObjects/ActionsPage.js';
 
 test.describe('Test', () => {
   test('Test', async ({ page }) => {
@@ -11,11 +11,21 @@ test.describe('Test', () => {
 
     await homePage.navigate();
     //await page.getByText("get", {exact: true}).click();
-    await homePage.listButton('get').click();
+    await homePage.listButton('type').click();
+    //await page.getByRole('link', { name: 'get', exact: true }).click();
+    //await homePage.clickListButton('get');
+
+    await actionsPage.checkbox1.check();
+
     //await getPage.login('email', 'password');
 
-    await actionsPage.couponCode.type('MYCODE123');
-    await actionsPage.submitButton.click();
-  //   expect(await actionsPage.message('Your form has been submitted!').toBeVisible());
-   });
+    // await actionsPage.couponCode.type('MYCODE123');
+    // await actionsPage.submitButton.click();
+    //   expect(await actionsPage.message('Your form has been submitted!').toBeVisible());
+
+    //await page.goto("/", { waitUntil: 'networkidle' , timeout: 5000}); // to use it for homework with login or the following if navigationtimeout is set in config
+    //await page.goto("/", { waitUntil: 'networkidle'});
+
+    //.tobeHidden() .toBeVisible() .toHaveText()
+  });
 });

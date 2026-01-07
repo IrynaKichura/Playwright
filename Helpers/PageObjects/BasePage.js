@@ -4,6 +4,6 @@ export class BasePage {
     this.url = url;
   }
   async navigate() {
-  await  this.page.goto('/');
+    await this.page.goto(this.url);
   }
 }
