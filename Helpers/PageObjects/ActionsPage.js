@@ -3,9 +3,10 @@ import BaseElement from '../Elements/BaseElement.js';
 
 const url = '/commands/actions';
 export default class extends BasePage {
-  #baseElement = new BaseElement();
-  constructor() {
-    super(url);
+  #baseElement = new BaseElement(this.page);
+  constructor(page) {
+    super(page, url);
+    this.page = page;
   }
   // #couponCode1 is id of the element (selector)
   get couponCode() {
@@ -18,11 +19,11 @@ export default class extends BasePage {
   // '.action-form' is selector of class
   // 'p' is not unique so we need to find it within the parent` but '.action-form'  is not its parent so we neew to find parent of '.action-form'
   get actionsForm() {
-    return this.#baseElement.getElement('.action-form').parent();
+    return this.#baseElement.getElement('.action-form');
   }
-  get message() {
-    return this.actionsForm.within(() => {
-       this.#baseElement.getElement('p');
-    });
+
+
+ message() {
+    return this.#baseElement.getByText(text);
   }
 }

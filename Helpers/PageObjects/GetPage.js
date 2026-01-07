@@ -3,10 +3,11 @@ import { BasePage } from './BasePage.js';
 
 const url = '/';
 export class GetPage extends BasePage {
-  #baseElement = new BaseElement();
+  #baseElement = new BaseElement(this.page);
 
-  constructor() {
-    super(url);
+  constructor(page) {
+    super(page, url);
+    this.page = page;
   }
 
   get submitButton() {
@@ -30,9 +31,9 @@ export class GetPage extends BasePage {
   //     this.inputPassword.type(password, { sensitive: true });
   //     this.submitButton.click();
   //   }
-  login(emal, password) {
-    this.inputEmail.type(emal);
-    this.inputPassword.type(password, { log: false });
-    this.submitButton.click();
+  async login(emal, password) {
+    await this.inputEmail.type(emal);
+    await this.inputPassword.type(password);
+    await this.submitButton.click();
   }
 }

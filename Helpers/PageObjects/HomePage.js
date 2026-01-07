@@ -1,20 +1,14 @@
 import { BasePage } from './BasePage.js';
-import BaseElement from   '../Elements/BaseElement';
+import BaseElement from '../Elements/BaseElement';
 
 const url = '/';
 
 export class HomePage extends BasePage {
-#baseElement = new BaseElement();
-  constructor() {
-    super(url);
+  #baseElement = new BaseElement(this.page);
+  constructor(page) {
+    super(page, url);
+    this.page = page;
   }
-  // navigate() {
-  //   cy.visit(this.#url);
-  // }
-
-  // get list() {
-  //   return cy.get('.home-list');
-  // }
 
   listButton(text) {
     return this.#baseElement.getByText(text);

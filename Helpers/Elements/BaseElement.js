@@ -1,8 +1,13 @@
 export default class {
-  getElement(selector) {
-    return cy.get(selector);
+  constructor(page) {
+    this.page = page;
   }
-  getByText(text) {
-    return cy.contains(text);
+
+  // Method to get an element by selector -selectors are not awaited, functions are awaited
+  getElement(selector) {
+    return this.page.locator(selector);
+  }
+  getByText(text, exact = true) {
+    return this.page.getByText(text, { exact: exact });
   }
 }

@@ -1,8 +1,9 @@
 export class BasePage {
-  constructor(url) {
+  constructor(page, url) {
+    this.page = page;
     this.url = url;
   }
-  navigate() {
-    cy.visit(this.url);
+  async navigate() {
+  await  this.page.goto('/');
   }
 }
