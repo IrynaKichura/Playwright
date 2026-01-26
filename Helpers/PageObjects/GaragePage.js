@@ -4,10 +4,11 @@ import BaseElement from '../Elements/BaseElement';
 const url = '/';
 
 export class GaragePage extends BasePage {
-  #baseElement = new BaseElement();
+  #baseElement;
 
-  constructor() {
-    super(url);
+  constructor(page) {
+    super(page, url);
+    this.#baseElement = new BaseElement(page);
   }
 
   getButton(text) {
@@ -15,7 +16,7 @@ export class GaragePage extends BasePage {
   }
   get addButton() {
     return this.#baseElement.getElement(
-      '.panel-page_heading.d-flex.justify-content-between .btn.btn-primary'
+      '.panel-page_heading.d-flex.justify-content-between .btn.btn-primary',
     );
   }
   get carBrand() {
@@ -29,7 +30,7 @@ export class GaragePage extends BasePage {
   }
   get carAddbutton() {
     return this.#baseElement.getElement(
-      '.modal-footer.d-flex.justify-content-end .btn.btn-primary'
+      '.modal-footer.d-flex.justify-content-end .btn.btn-primary',
     );
   }
   get addFuelbutton() {
