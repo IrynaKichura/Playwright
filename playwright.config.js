@@ -35,9 +35,9 @@ export default defineConfig({
     baseURL: process.env.BASE_URL,
     httpCredentials: {
       //@ts-ignore
-      username: process.env.USERNAME,
+      username: process.env.USERNAME1,
       //@ts-ignore
-      password: process.env.PASSWORD,
+      password: process.env.PASSWORD1,
     },
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
