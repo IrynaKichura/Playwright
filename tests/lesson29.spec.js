@@ -1,4 +1,5 @@
 import test, { expect } from '@playwright/test';
+import { LoginPage } from '../Helpers/PageObjects/LoginPage.js';
 
 test.describe('Garage Page', () => {
   let token;
@@ -13,6 +14,37 @@ test.describe('Garage Page', () => {
     token = response.headers()['set-cookie'].split(';')[0];
     //console.log('Auth Token:', token);
   });
+  test('Change user data', async ({ page }) => {
+    await page.route('/api/users/profile', async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          status: 'ok',
+          data: {
+            userId: 318384,
+            photoFilename: 'default-user.png',
+            name: 'NewUserName',
+            lastName: 'NewLastName',
+          },
+        }),
+      });
+    });
+    const loginPage = new LoginPage(page);
+    await page.goto('/');
+    await page.locator("[class='btn btn-outline-white header_signin']").click();
+    //await page.getByRole('button', { name: 'Sign In' }).click();
+
+    await loginPage.login('Lesson21_user1@gmail.com', 'Password12345');
+    // await page.locator('#signinEmail').fill('Lesson21_user1@gmail.com');
+    // await page.locator('#signinPassword').fill('Password12345');
+    // await page.locator("[class='btn btn-primary']").click();
+
+    await page.locator('a[routerlink="profile"]').click();
+    const nameInput = await page.locator("[class^='profile_name']");
+    await expect(nameInput).toContainText('NewUserName NewLastName');
+  });
+
   test('Create, update, delete car', async ({ page, request }) => {
     // Try to create car - missing fields
     let postResponse = await request.post('api/cars', {
